@@ -1,5 +1,10 @@
 import { SetState } from 'zustand';
 import { Content, content } from '../fallback';
+import dispatchRecipe from './api';
+
+const RECIPES = {
+  LEADS_BLOCK: '30ab8d6e-4e0f-4b2b-b206-19d072bca337',
+};
 
 type InitContentModel = {
   content: Content;
@@ -25,7 +30,16 @@ const initContentModel = (set: SetState<Store>): InitContentModel => ({
   currentButtonText: content.button?.states?.initial,
   setButtonText: (buttonText: string) =>
     set((state) => ({ ...state, currentButtonText: buttonText })),
-  getContent: () => {},
+  getContent: async () => {
+    const payload = {
+      key: 'content',
+    };
+    const content = await dispatchRecipe({
+      triggerId: RECIPES.LEADS_BLOCK,
+      payload,
+    });
+    set((state) => ({ ...state, content }));
+  },
   setContent: (content: Content) => {
     set((state) => ({ ...state, content }));
   },
