@@ -9,13 +9,13 @@ const { colors } = theme;
 
 const WrapperBox: FC = ({ children }) => (
   <Box
-    elevation={'large'}
-    width={'500px'}
+    elevation="large"
+    width="500px"
     height={{ min: 'max-content' }}
     round="8px"
     background={colors.white}
-    pad={'large'}
-    gap={'medium'}
+    pad="large"
+    gap="medium"
   >
     {children}
   </Box>
@@ -42,15 +42,15 @@ const EmailBlock: VFC = () => {
           <Heading level={1} color={colors.black}>
             Become smarter in just 5 minutes
           </Heading>
-          <Text size={'medium'}>
+          <Text size="medium">
             Get the daily email that makes reading the news actually enjoyable.
             Stay informed and entertained, for free.
           </Text>
           <TextField
             id="outlined-basic"
-            type={'email'}
-            label={'Enter your email'}
-            placeholder={'Enter your email'}
+            type="email"
+            label="Enter your email"
+            placeholder="Enter your email"
             variant="outlined"
           />
           <Button

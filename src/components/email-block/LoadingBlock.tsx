@@ -12,37 +12,37 @@ const useStyle = makeStyles({
 const LoadingBlock: VFC = () => {
   const classes = useStyle();
   return (
-    <Box gap={'medium'}>
+    <Box gap="medium">
       <Skeleton
         variant="rect"
-        width={'100%'}
+        width="100%"
         height={80}
-        animation={'wave'}
+        animation="wave"
         className={classes.box}
       />
-      <Box gap={'xsmall'}>
+      <Box gap="xsmall">
         {[...new Array(5)].map(() => (
           <Skeleton
             variant="rect"
-            width={'100%'}
+            width="100%"
             height={10}
-            animation={'wave'}
+            animation="wave"
             className={classes.box}
           />
         ))}
       </Box>
       <Skeleton
         variant="rect"
-        width={'100%'}
+        width="100%"
         height={50}
-        animation={'wave'}
+        animation="wave"
         className={classes.box}
       />
       <Skeleton
         variant="rect"
-        width={'100%'}
+        width="100%"
         height={50}
-        animation={'wave'}
+        animation="wave"
         className={classes.box}
       />
     </Box>
