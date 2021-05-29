@@ -3,7 +3,7 @@ import { Box, Image } from 'grommet';
 import { makeStyles } from '@material-ui/core';
 import './styles.css';
 import logo from './assets/images/logo.svg';
-import theme from './theme';
+// import theme from './theme';
 import EmailBlock from './components/email-block';
 
 const useStyle = makeStyles({

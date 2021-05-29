@@ -1,9 +1,11 @@
-import React, { FC, VFC, useState, useEffect } from 'react';
+import React, { FC, VFC } from 'react';
 import { Box, Text, Heading } from 'grommet';
 import { TextField } from '@material-ui/core';
 import theme from '../../theme';
 import Button from './Button';
 import LoadingBlock from './LoadingBlock';
+import { useStore } from './logic/store';
+import { useDispatchEmailFlow } from './logic/flows';
 
 const { colors } = theme;
 
@@ -22,13 +24,17 @@ const WrapperBox: FC = ({ children }) => (
 );
 
 const EmailBlock: VFC = () => {
-  const [isLoading, setLoading] = useState(true);
+  const [isLoading, isProcessing] = useStore((state) => [
+    state.loading,
+    state.processing,
+  ]);
 
-  useEffect(() => {
-    setTimeout(() => {
-      setLoading(false);
-    }, 2000);
-  });
+  const [content, currentButtonText] = useStore((state) => [
+    state.content,
+    state.currentButtonText,
+  ]);
+
+  const dispatch = useDispatchEmailFlow();
 
   return (
     <>
@@ -40,25 +46,17 @@ const EmailBlock: VFC = () => {
       {!isLoading && (
         <WrapperBox>
           <Heading level={1} color={colors.black}>
-            Become smarter in just 5 minutes
+            {content.title}
           </Heading>
-          <Text size="medium">
-            Get the daily email that makes reading the news actually enjoyable.
-            Stay informed and entertained, for free.
-          </Text>
-          <TextField
-            id="outlined-basic"
-            type="email"
-            label="Enter your email"
-            placeholder="Enter your email"
-            variant="outlined"
-          />
+          <Text size="medium">{content.subTitle}</Text>
+          <TextField {...content.input} />
           <Button
             type="submit"
             onClick={(e) => {
               e.preventDefault();
+              dispatch();
             }}
-            // disabled={isProcessing || !isValid}
+            disabled={isProcessing}
             background={colors.primary}
             color={colors.white}
             style={{
@@ -66,7 +64,7 @@ const EmailBlock: VFC = () => {
               paddingBottom: '16px',
             }}
           >
-            Submit
+            {currentButtonText}
           </Button>
         </WrapperBox>
       )}
