@@ -21,8 +21,9 @@ const LoadingBlock: VFC = () => {
         className={classes.box}
       />
       <Box gap="xsmall">
-        {[...new Array(5)].map(() => (
+        {[...new Array(5)].map((value, key) => (
           <Skeleton
+            key={`${value}-${key}`}
             variant="rect"
             width="100%"
             height={10}
